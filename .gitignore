@@ -1,0 +1,5 @@
+bin
+dep
+*.o
+*.d
+demo/demo_hitbox
