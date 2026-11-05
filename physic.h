@@ -1,5 +1,4 @@
 #include <SDL3/SDL.h>
-#include <stdbool.h>
 #include <math.h>
 
 typedef struct Vector2 {

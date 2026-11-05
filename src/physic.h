@@ -1,5 +1,4 @@
 #include <SDL3/SDL.h>
-#include <stdbool.h>
 #include <math.h>
 
 #define abs_value(x) (double)(((x) > 0) ? (x) : -(x))
