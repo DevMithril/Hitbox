@@ -98,25 +98,4 @@ void move_hitbox(Hitbox *h, double x, double y);
  */
 void display_hitbox(Hitbox *h, double ofx, double ofy, SDL_Renderer *renderer);
 
-/*
-================================================================================
-    Body
-================================================================================
-*/
-
-typedef struct Body {
-    Hitbox hitbox;
-    Vector2 velocity;
-    Vector2 mtv;
-    Vector2 friction;
-    double weight;
-    double gravity;
-} Body;
-
-void update_body(Body *b);
-
-void add_velocity(Body *b, double x, double y);
-
-void add_mtv(Body *b, Vector2 mtv);
-
 #endif
