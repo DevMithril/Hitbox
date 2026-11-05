@@ -3,6 +3,7 @@
 #include <SDL3/SDL.h>
 #include <math.h>
 
+// TODO : retirer abs_value() et passer en ISO C99
 #define abs_value(x) (double)(((x) > 0) ? (x) : -(x))
 #define MAX_NORMAL_COUNT 4
 #define MAX_OVERLAP (double)(1000000000.0)
@@ -13,9 +14,12 @@ typedef struct Vector2 {
 } Vector2;
 
 typedef enum HitboxType {
-    AABB_RECTANGLE = 0x1,
-    RIGHT_TRIANGLE = 0x2,
-    CIRCLE = 0x4
+    HITBOX_AABB = 0x1,
+    HITBOX_TRIANGLE = 0x2,
+    HITBOX_CIRCLE = 0x4,
+    HITBOX_AABB_NS = 0x8 | HITBOX_AABB,
+    HITBOX_TRIANGLE_NS = 0x8 | HITBOX_TRIANGLE,
+    HITBOX_CIRCLE_NS = 0x8 | HITBOX_CIRCLE
 } HitboxType;
 
 typedef struct Hitbox {

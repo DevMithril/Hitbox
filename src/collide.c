@@ -3,13 +3,14 @@
 void get_normals(Hitbox *h1, Hitbox *h2, Vector2 *normals);
 void get_extrema(Hitbox *h, Vector2 *extrema, Vector2 normal);
 double get_overlap(Vector2 extrema1, Vector2 extrema2);
-void get_mtv(double overlap, Vector2 normal, Vector2 *mtv);
+void get_mtv(double overlap, Vector2 normal, Vector2 *mtv, bool slopes);
 void make_h1_mtv(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
 
 bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv) {
     Vector2 normals[MAX_NORMAL_COUNT];
     Vector2 h1_extrema, h2_extrema;
     double overlap;
+    bool slopes = !((h1->type & 0x8) || (h2->type & 0x8));
 
     if (mtv) {
         *mtv = (Vector2){MAX_OVERLAP, 0};
@@ -30,7 +31,7 @@ bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv) {
             return false;
         }
         if (mtv) {
-            get_mtv(overlap, normals[i], mtv);
+            get_mtv(overlap, normals[i], mtv, slopes);
         }
     }
 

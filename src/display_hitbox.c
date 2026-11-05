@@ -3,8 +3,8 @@
 void display_hitbox(Hitbox *h, double ofx, double ofy, SDL_Renderer *renderer) {
     Vector2 min, max, A, B, C;
 
-    switch (h->type) {
-    case AABB_RECTANGLE :
+    switch (h->type & 0x7) {
+    case HITBOX_AABB :
         min = (Vector2){round(h->x + ofx), round(h->y + ofy)};
         max = (Vector2){round(h->w + min.x), round(h->h + min.y)};
         
@@ -13,7 +13,7 @@ void display_hitbox(Hitbox *h, double ofx, double ofy, SDL_Renderer *renderer) {
         SDL_RenderLine(renderer, max.x, max.y, min.x, max.y);
         SDL_RenderLine(renderer, min.x, max.y, min.x, min.y);
         break;
-    case RIGHT_TRIANGLE :
+    case HITBOX_TRIANGLE :
         A = (Vector2){round(h->x + ofx), round(h->y + ofy)};
         B = (Vector2){round(h->w + A.x), A.y};
         C = (Vector2){A.x, round(h->h + A.y)};
@@ -22,7 +22,7 @@ void display_hitbox(Hitbox *h, double ofx, double ofy, SDL_Renderer *renderer) {
         SDL_RenderLine(renderer, B.x, B.y, C.x, C.y);
         SDL_RenderLine(renderer, C.x, C.y, A.x, A.y);
         break;
-    case CIRCLE :
+    case HITBOX_CIRCLE :
         A = (Vector2){round(h->x + ofx), round(h->y + ofy)};
 
         for (float x = 0, y = h->r; x < y; x++) {

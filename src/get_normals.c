@@ -8,21 +8,21 @@ void get_normals(Hitbox *h1, Hitbox *h2, Vector2 *normals) {
     int i = 0;
     Vector2 mid1, mid2;
 
-    if (types & AABB_RECTANGLE || types & RIGHT_TRIANGLE) {
+    if (types & HITBOX_AABB || types & HITBOX_TRIANGLE) {
         normals[i++] = (Vector2){1, 0};
         normals[i++] = (Vector2){0, 1};
     }
-    if (h1->type & RIGHT_TRIANGLE) {
+    if (h1->type & HITBOX_TRIANGLE) {
         normals[i] = (Vector2){h1->h, h1->w};
         normalize(&normals[i]);
         i++;
     }
-    if (h2->type & RIGHT_TRIANGLE) {
+    if (h2->type & HITBOX_TRIANGLE) {
         normals[i] = (Vector2){h2->h, h2->w};
         normalize(&normals[i]);
         i++;
     }
-    if (types & CIRCLE) {
+    if (types & HITBOX_CIRCLE) {
         mid1 = get_middle(h1);
         mid2 = get_middle(h2);
         normals[i] = (Vector2){mid2.x - mid1.x, mid2.y - mid1.y};

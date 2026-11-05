@@ -35,9 +35,14 @@ subject to the following restrictions:
 */
 
 typedef enum HitboxType {
-    AABB_RECTANGLE = 0x1,
-    RIGHT_TRIANGLE = 0x2,
-    CIRCLE = 0x4
+    // MTV interprété pour les pentes
+    HITBOX_AABB = 0x1,
+    HITBOX_TRIANGLE = 0x2,
+    HITBOX_CIRCLE = 0x4,
+    // MTV brut (No Slopes)
+    HITBOX_AABB_NS = 0x8 | HITBOX_AABB,
+    HITBOX_TRIANGLE_NS = 0x8 | HITBOX_TRIANGLE,
+    HITBOX_CIRCLE_NS = 0x8 | HITBOX_CIRCLE
 } HitboxType;
 
 typedef struct Vector2 {

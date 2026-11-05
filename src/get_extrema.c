@@ -11,21 +11,21 @@ void get_extrema(Hitbox *h, Vector2 *extrema, Vector2 normal) {
     Vector2 points[4];
     int len_points;
 
-    switch (h->type) {
-    case AABB_RECTANGLE :
+    switch (h->type & 0x7) {
+    case HITBOX_AABB :
         points[0] = (Vector2){h->x, h->y};
         points[1] = (Vector2){h->x, h->y + h->h};
         points[2] = (Vector2){h->x + h->w, h->y + h->h};
         points[3] = (Vector2){h->x + h->w, h->y};
         len_points = 4;
         break;
-    case RIGHT_TRIANGLE :
+    case HITBOX_TRIANGLE :
         points[0] = (Vector2){h->x, h->y};
         points[1] = (Vector2){h->x + h->w, h->y};
         points[2] = (Vector2){h->x, h->y + h->h};
         len_points = 3;
         break;
-    case CIRCLE :
+    case HITBOX_CIRCLE :
         points[0] = (Vector2){h->x, h->y};
         len_points = 1;
         break;
@@ -42,7 +42,7 @@ void get_extrema(Hitbox *h, Vector2 *extrema, Vector2 normal) {
         }
     }
 
-    if (h->type == CIRCLE) {
+    if (h->type & HITBOX_CIRCLE) {
         extrema->x -= h->r;
         extrema->y += h->r;
     }

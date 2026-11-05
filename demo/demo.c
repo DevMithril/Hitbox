@@ -93,56 +93,56 @@ void app_init(App *app, const char window_name[], int res_x, int res_y, bool ful
 void app_load_assets(App *app) {
     load_Input(&app->input);
 
-    app->level[0].type = AABB_RECTANGLE;
+    app->level[0].type = HITBOX_AABB;
     app->level[0].x = 150;
     app->level[0].y = 150;
     app->level[0].w = 50;
     app->level[0].h = 50;
 
-    app->level[1].type = AABB_RECTANGLE;
+    app->level[1].type = HITBOX_AABB;
     app->level[1].x = 200;
     app->level[1].y = 300;
     app->level[1].w = -50;
     app->level[1].h = -50;
 
-    app->level[2].type = RIGHT_TRIANGLE;
+    app->level[2].type = HITBOX_TRIANGLE;
     app->level[2].x = 250;
     app->level[2].y = 150;
     app->level[2].w = 50;
     app->level[2].h = 50;
 
-    app->level[3].type = RIGHT_TRIANGLE;
+    app->level[3].type = HITBOX_TRIANGLE;
     app->level[3].x = 300;
     app->level[3].y = 250;
     app->level[3].w = -50;
     app->level[3].h = 50;
 
-    app->level[4].type = RIGHT_TRIANGLE;
+    app->level[4].type = HITBOX_TRIANGLE;
     app->level[4].x = 300;
     app->level[4].y = 400;
     app->level[4].w = -50;
     app->level[4].h = -50;
 
-    app->level[5].type = RIGHT_TRIANGLE;
+    app->level[5].type = HITBOX_TRIANGLE;
     app->level[5].x = 250;
     app->level[5].y = 500;
     app->level[5].w = 50;
     app->level[5].h = -50;
 
-    app->level[6].type = CIRCLE;
+    app->level[6].type = HITBOX_CIRCLE;
     app->level[6].x = 375;
     app->level[6].y = 175;
     app->level[6].r = 25;
     app->level[6].h = 0;
 
-    app->cursor[0].type = AABB_RECTANGLE;
+    app->cursor[0].type = HITBOX_AABB;
     app->cursor[0].x = 0;
     app->cursor[0].y = 0;
     app->cursor[0].w = 50;
     app->cursor[0].h = 50;
 
     app->cursor[1] = app->cursor[0];
-    app->cursor[1].type = RIGHT_TRIANGLE;
+    app->cursor[1].type = HITBOX_TRIANGLE;
 
     app->cursor[2] = app->cursor[1];
     app->cursor[2].w = -50;
@@ -157,7 +157,7 @@ void app_load_assets(App *app) {
     app->cursor[4].h = -50;
 
     app->cursor[5] = app->cursor[0];
-    app->cursor[5].type = CIRCLE;
+    app->cursor[5].type = HITBOX_CIRCLE;
     app->cursor[5].r = 25;
     app->cursor[5].h = 0;
 
@@ -190,6 +190,18 @@ int main(void) {
         if (app.input.jump) {
             app.current_hitbox = (app.current_hitbox + 1) % 6;
             resetKeyState_Input(app.input.key_jump, &app.input);
+        }
+
+        if (app.input.up) {
+            for (int i = 0; i < 6; i++) {
+                app.cursor[i].type |= 0x8;
+            }
+        }
+
+        if (app.input.down) {
+            for (int i = 0; i < 6; i++) {
+                app.cursor[i].type &= ~0x8;
+            }
         }
 
         app.cursor[app.current_hitbox].x = app.input.mouse_pos.x;
