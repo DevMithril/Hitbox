@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL3/SDL.h>
-#include "../physic.h"
+#include "../hitbox.h"
 
 typedef struct Input {
     bool key[SDL_SCANCODE_COUNT];

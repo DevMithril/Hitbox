@@ -1,22 +1,49 @@
+/*
+================================================================================
+    zlib License
+================================================================================
+
+Copyright (c) 2026 Théophane Bruyelles
+
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from
+the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it freely,
+subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented;
+   you must not claim that you wrote the original software.
+   If you use this software in a product, an acknowledgment in the product
+   documentation would be appreciated but is not required.
+2. Altered source versions must be plainly marked as such,
+   and must not be misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+*/
+
+#ifndef HITBOX_LIB_H
+#define HITBOX_LIB_H
 #include <SDL3/SDL.h>
 #include <math.h>
 
-typedef struct Vector2 {
-    double x;
-    double y;
-} Vector2;
-
 /*
- * +-------------------------------------------------------------------------+
- * |                                HITBOX                                   |
- * +-------------------------------------------------------------------------+
- */
+================================================================================
+    Hitbox
+================================================================================
+*/
 
 typedef enum HitboxType {
     AABB_RECTANGLE = 0x1,
     RIGHT_TRIANGLE = 0x2,
     CIRCLE = 0x4
 } HitboxType;
+
+typedef struct Vector2 {
+    double x;
+    double y;
+} Vector2;
 
 typedef struct Hitbox {
     double x;
@@ -29,7 +56,7 @@ typedef struct Hitbox {
     HitboxType type;
 } Hitbox;
 
-/*
+/**
  * Indique la collision entre deux Hitbox
  * \param h1 première Hitbox
  * \param h2 deuxième Hitbox
@@ -40,7 +67,7 @@ typedef struct Hitbox {
  */
 bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
 
-/*
+/**
  * Indique la collision entre une Hitbox et plusieurs Hitbox
  * \param h Hitbox à tester
  * \param h_arr tableau des Hitbox à tester
@@ -54,7 +81,7 @@ bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
  */
 bool collide_bulk(Hitbox *h, Hitbox *h_arr, int len, int stride, Vector2 *mtv);
 
-/*
+/**
  * Déplace une Hitbox
  * \param h Hitbox à déplacer
  * \param x déplacement horizontal à effectuer
@@ -62,7 +89,7 @@ bool collide_bulk(Hitbox *h, Hitbox *h_arr, int len, int stride, Vector2 *mtv);
  */
 void move_hitbox(Hitbox *h, double x, double y);
 
-/*
+/**
  * Affiche une Hitbox
  * \param h Hitbox à afficher
  * \param ofx décalage horizontal de l'affichage (offset x)
@@ -72,10 +99,10 @@ void move_hitbox(Hitbox *h, double x, double y);
 void display_hitbox(Hitbox *h, double ofx, double ofy, SDL_Renderer *renderer);
 
 /*
- * +------------------------------------------------------------------------+
- * |                                PHYSIC                                  |
- * +------------------------------------------------------------------------+
- */
+================================================================================
+    Body
+================================================================================
+*/
 
 typedef struct Body {
     Hitbox hitbox;
@@ -91,3 +118,5 @@ void update_body(Body *b);
 void add_velocity(Body *b, double x, double y);
 
 void add_mtv(Body *b, Vector2 mtv);
+
+#endif

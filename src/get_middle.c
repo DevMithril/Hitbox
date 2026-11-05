@@ -1,5 +1,8 @@
-#include "physic.h"
+#include "types.h"
 
+/**
+ * Calcule le milieu d'une Hitbox
+ */
 Vector2 get_middle(Hitbox *h) {
     Vector2 mid = {0, 0};
     switch (h->type) {

@@ -1,4 +1,4 @@
-#include "physic.h"
+#include "types.h"
 
 void display_hitbox(Hitbox *h, double ofx, double ofy, SDL_Renderer *renderer) {
     Vector2 min, max, A, B, C;

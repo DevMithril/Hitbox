@@ -1,4 +1,6 @@
-#include "physic.h"
+#include "types.h"
+
+bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
 
 bool collide_bulk(Hitbox *h, Hitbox *h_arr, int len, int stride, Vector2 *mtv) {
     bool collision = false;

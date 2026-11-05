@@ -1,10 +1,10 @@
 CC= gcc
 CFLAGS= -Wall -Wextra -pedantic
-LDFLAGS= -L../ -Wl,-rpath=../ -lSDL3 -lphysic
+LDFLAGS= -L../ -Wl,-rpath=../ -lSDL3 -lm -lhitbox
 
 EXEC= demo_hitbox
 DEMO_SRC= demo.c
-LIBSO= ../libphysic.so
+LIBSO= ../libhitbox.so
 
 run: $(EXEC)
 	@./$(EXEC)
