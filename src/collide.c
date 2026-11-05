@@ -4,7 +4,7 @@ void get_normals(Hitbox *h1, Hitbox *h2, Vector2 *normals);
 void get_extrema(Hitbox *h, Vector2 *extrema, Vector2 normal);
 double get_overlap(Vector2 extrema1, Vector2 extrema2);
 void get_mtv(double overlap, Vector2 normal, Vector2 *mtv);
-void assert_mtv_for_h1(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
+void make_h1_mtv(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
 
 bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv) {
     Vector2 normals[MAX_NORMAL_COUNT];
@@ -35,7 +35,7 @@ bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv) {
     }
 
     if (mtv) {
-        assert_mtv_for_h1(h1, h2, mtv);
+        make_h1_mtv(h1, h2, mtv);
     }
 
     return true;
