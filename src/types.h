@@ -3,8 +3,6 @@
 #include <SDL3/SDL.h>
 #include <math.h>
 
-// TODO : retirer abs_value() et passer en ISO C99
-#define abs_value(x) (double)(((x) > 0) ? (x) : -(x))
 #define MAX_NORMAL_COUNT 4
 #define MAX_OVERLAP (double)(1000000000.0)
 
@@ -22,6 +20,7 @@ typedef enum HitboxType {
     HITBOX_CIRCLE_NS = 0x8 | HITBOX_CIRCLE
 } HitboxType;
 
+// TODO : passer en ISO C99
 typedef struct Hitbox {
     double x;
     double y;

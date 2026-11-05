@@ -2,6 +2,7 @@
 
 #define square(x) (double)((x) * (x))
 #define len(x, y) (double)(square(x) + square(y))
+#define abs_value(x) (double)(((x) > 0) ? (x) : -(x))
 
 bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
 
@@ -36,3 +37,4 @@ bool collide_bulk(Hitbox *h, Hitbox *h_arr, int len, int stride, Vector2 *mtv) {
 
 #undef square
 #undef len
+#undef abs_value

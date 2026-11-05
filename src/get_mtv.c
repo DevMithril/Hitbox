@@ -2,6 +2,7 @@
 
 #define square(x) (double)((x) * (x))
 #define len(x, y) (double)(square(x) + square(y))
+#define abs_value(x) (double)(((x) > 0) ? (x) : -(x))
 
 void get_mtv(double overlap, Vector2 normal, Vector2 *mtv, bool slopes) {
     Vector2 new_mtv;
@@ -32,3 +33,4 @@ void get_mtv(double overlap, Vector2 normal, Vector2 *mtv, bool slopes) {
 
 #undef square
 #undef len
+#undef abs_value
