@@ -133,7 +133,6 @@ void app_load_assets(App *app) {
     app->level[6].x = 375;
     app->level[6].y = 175;
     app->level[6].r = 25;
-    app->level[6].h = 0;
 
     app->cursor[0].type = HITBOX_AABB;
     app->cursor[0].x = 0;
@@ -159,7 +158,6 @@ void app_load_assets(App *app) {
     app->cursor[5] = app->cursor[0];
     app->cursor[5].type = HITBOX_CIRCLE;
     app->cursor[5].r = 25;
-    app->cursor[5].h = 0;
 
     app->current_hitbox = 0;
     app->ghost = app->cursor[0];

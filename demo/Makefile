@@ -1,5 +1,5 @@
 CC= gcc
-CFLAGS= -Wall -Wextra -pedantic
+CFLAGS= -Wall -Wextra -pedantic -std=c99
 LDFLAGS= -L../ -Wl,-rpath=../ -lSDL3 -lm -lhitbox
 
 EXEC= demo_hitbox

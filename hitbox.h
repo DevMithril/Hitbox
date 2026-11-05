@@ -53,11 +53,9 @@ typedef struct Vector2 {
 typedef struct Hitbox {
     double x;
     double y;
-    union {
-        double w;
-        double r;
-    };
+    double w;
     double h;
+    double r;
     HitboxType type;
 } Hitbox;
 

@@ -20,15 +20,12 @@ typedef enum HitboxType {
     HITBOX_CIRCLE_NS = 0x8 | HITBOX_CIRCLE
 } HitboxType;
 
-// TODO : passer en ISO C99
 typedef struct Hitbox {
     double x;
     double y;
-    union {
-        double w;
-        double r;
-    };
+    double w;
     double h;
+    double r;
     HitboxType type;
 } Hitbox;
 
