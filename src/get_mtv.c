@@ -6,7 +6,6 @@
 
 void get_mtv(double overlap, Vector2 normal, Vector2 *mtv, bool slopes) {
     Vector2 new_mtv;
-    (void)slopes;
 
     new_mtv.x = normal.x * overlap;
     new_mtv.y = normal.y * overlap;
