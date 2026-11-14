@@ -65,7 +65,7 @@ typedef struct Hitbox {
  * \param h2 deuxième Hitbox
  * \param mtv paramètre de sortie du MTV (Minimal Translation Vector)
  * \return true si h1 et h2 sont en collision, false sinon
- * \note le MTV fourni permet de résoudre la collision en l'applicant sur 'h1'
+ * \note le MTV fourni permet de résoudre la collision en l'appliquant sur 'h1'
  * \note si on ne souhaite pas calculer le MTV, 'mtv' peut être NULL
  */
 bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
@@ -79,7 +79,7 @@ bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
  * \param mtv paramètre de sortie du MTV (Minimal Translation Vector)
  * \return true si 'h' est en collision avec au moins une Hitbox de 'h_arr'
  * \note 'stride' permet d'utiliser un tableau ne contenant pas que des Hitbox
- * \note le MTV fourni permet de résoudre la collision en l'applicant sur 'h'
+ * \note le MTV fourni permet de résoudre la collision en l'appliquant sur 'h'
  * \note si on ne souhaite pas calculer le MTV, 'mtv' peut être NULL
  */
 bool collide_bulk(Hitbox *h, Hitbox *h_arr, int len, int stride, Vector2 *mtv);
