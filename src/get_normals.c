@@ -12,12 +12,12 @@ void get_normals(Hitbox *h1, Hitbox *h2, Vector2 *normals) {
         normals[i++] = (Vector2){1, 0};
         normals[i++] = (Vector2){0, 1};
     }
-    if (h1->type & HITBOX_TRIANGLE) {
+    if (h1->type == HITBOX_TRIANGLE) {
         normals[i] = (Vector2){h1->h, h1->w};
         normalize(&normals[i]);
         i++;
     }
-    if (h2->type & HITBOX_TRIANGLE) {
+    if (h2->type == HITBOX_TRIANGLE) {
         normals[i] = (Vector2){h2->h, h2->w};
         normalize(&normals[i]);
         i++;

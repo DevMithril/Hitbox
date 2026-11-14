@@ -176,7 +176,8 @@ void render_demo(App *app) {
 
 int main(void) {
     App app = {.renderer = NULL, .window = NULL};
-    Vector2 mtv;
+    Mtv mtv;
+    bool slopes = true;
 
     app_init(&app, "Demo Hitbox", 800, 800, false);
     app_load_assets(&app);
@@ -191,15 +192,11 @@ int main(void) {
         }
 
         if (app.input.up) {
-            for (int i = 0; i < 6; i++) {
-                app.cursor[i].type |= 0x8;
-            }
+            slopes = true;
         }
 
         if (app.input.down) {
-            for (int i = 0; i < 6; i++) {
-                app.cursor[i].type &= ~0x8;
-            }
+            slopes = false;
         }
 
         app.cursor[app.current_hitbox].x = app.input.mouse_pos.x;
@@ -208,7 +205,11 @@ int main(void) {
         app.ghost = app.cursor[app.current_hitbox];
 
         collide_bulk(&app.ghost, app.level, 7, sizeof(Hitbox), &mtv);
-        move_hitbox(&app.ghost, mtv.x, mtv.y);
+        if (slopes) {
+            move_hitbox(&app.ghost, mtv.xs, mtv.ys);
+        } else {
+            move_hitbox(&app.ghost, mtv.x, mtv.y);
+        }
 
         render_demo(&app);
         SDL_RenderPresent(app.renderer);

@@ -11,13 +11,17 @@ typedef struct Vector2 {
     double y;
 } Vector2;
 
+typedef struct Mtv {
+    double x;
+    double y;
+    double xs;
+    double ys;
+} Mtv;
+
 typedef enum HitboxType {
     HITBOX_AABB = 0x1,
     HITBOX_TRIANGLE = 0x2,
-    HITBOX_CIRCLE = 0x4,
-    HITBOX_AABB_NS = 0x8 | HITBOX_AABB,
-    HITBOX_TRIANGLE_NS = 0x8 | HITBOX_TRIANGLE,
-    HITBOX_CIRCLE_NS = 0x8 | HITBOX_CIRCLE
+    HITBOX_CIRCLE = 0x4
 } HitboxType;
 
 typedef struct Hitbox {

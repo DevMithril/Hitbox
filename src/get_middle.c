@@ -5,7 +5,7 @@
  */
 Vector2 get_middle(Hitbox *h) {
     Vector2 mid = {0, 0};
-    switch (h->type & 0x7) {
+    switch (h->type) {
     case HITBOX_AABB :
         mid.x = h->x + h->w / 2;
         mid.y = h->y + h->h / 2;

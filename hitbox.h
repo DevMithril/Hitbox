@@ -35,20 +35,17 @@ subject to the following restrictions:
 */
 
 typedef enum HitboxType {
-    // MTV interprété pour les pentes
     HITBOX_AABB = 0x1,
     HITBOX_TRIANGLE = 0x2,
-    HITBOX_CIRCLE = 0x4,
-    // MTV brut (No Slopes)
-    HITBOX_AABB_NS = 0x8 | HITBOX_AABB,
-    HITBOX_TRIANGLE_NS = 0x8 | HITBOX_TRIANGLE,
-    HITBOX_CIRCLE_NS = 0x8 | HITBOX_CIRCLE
+    HITBOX_CIRCLE = 0x4
 } HitboxType;
 
-typedef struct Vector2 {
+typedef struct Mtv {
     double x;
     double y;
-} Vector2;
+    double xs; // interprété pour les pentes (X Slopes)
+    double ys; // interprété pour les pentes (Y Slopes)
+} Mtv;
 
 typedef struct Hitbox {
     double x;
@@ -68,7 +65,7 @@ typedef struct Hitbox {
  * \note le MTV fourni permet de résoudre la collision en l'appliquant sur 'h1'
  * \note si on ne souhaite pas calculer le MTV, 'mtv' peut être NULL
  */
-bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
+bool collide(Hitbox *h1, Hitbox *h2, Mtv *mtv);
 
 /**
  * Indique la collision entre une Hitbox et plusieurs Hitbox
@@ -82,7 +79,7 @@ bool collide(Hitbox *h1, Hitbox *h2, Vector2 *mtv);
  * \note le MTV fourni permet de résoudre la collision en l'appliquant sur 'h'
  * \note si on ne souhaite pas calculer le MTV, 'mtv' peut être NULL
  */
-bool collide_bulk(Hitbox *h, Hitbox *h_arr, int len, int stride, Vector2 *mtv);
+bool collide_bulk(Hitbox *h, Hitbox *h_arr, int len, int stride, Mtv *mtv);
 
 /**
  * Déplace une Hitbox
